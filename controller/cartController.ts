@@ -3,6 +3,7 @@ import Cart from "../models/CartModel";
 import { logger } from "../logs/logConfig";
 import mongoose, { mongo, Schema } from "mongoose";
 import product from "../models/ProductModel";
+import { ObjectId } from "mongodb";
 
 export class cartController{
     public static async productAdd(req: Request, res: Response){
@@ -59,15 +60,17 @@ export class cartController{
             const typeQuantity = typeof(quantity);
 
             if( typeQuantity !== 'number' || typeProductId !== 'string'){
-                console.log(typeQuantity, typeProductId);
                 return res.status(400).json({"message": "Lista de itens inválida"});
             }
 
+            if(!ObjectId.isValid(product_Id)){
+                return res.status(400).json({"message": "Produto inválido"});
+            }
 
             const productFind = await product.findOne({_id: product_Id});
 
             if(!productFind){
-                return res.status(400).json({"message": "Produto inválido"});
+                return res.status(404).json({"message": "Produto inválido"});
             }
 
             if(productFind.quantity < quantity){
