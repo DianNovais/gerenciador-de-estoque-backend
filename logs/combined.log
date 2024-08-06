@@ -13,3 +13,6 @@
 {"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-07-31 14:28:13"}
 {"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-07-31 15:33:57"}
 {"level":"info","message":"carrinho do 66a7905adc37cf56895744a4 dianNovais criado com sucesso","service":"user-service","timestamp":"2024-07-31 15:35:07"}
+{"level":"error","message":"ocorreu um error o carrinho do 66a7905adc37cf56895744a4 dianNovais criar um carrinho MongoServerError: E11000 duplicate key error collection: test.carts index: user_id_1 dup key: { user_id: ObjectId('66a7905adc37cf56895744a4') }","service":"user-service","timestamp":"2024-08-05 15:12:34"}
+{"level":"error","message":"ocorreu um error o carrinho do 66a7905adc37cf56895744a4 dianNovais criar um carrinho MongoServerError: E11000 duplicate key error collection: test.carts index: user_id_1 dup key: { user_id: ObjectId('66a7905adc37cf56895744a4') }","service":"user-service","timestamp":"2024-08-05 15:15:20"}
+{"level":"info","message":"carrinho do 66a7905adc37cf56895744a4 dianNovais criado com sucesso","service":"user-service","timestamp":"2024-08-06 14:08:10"}

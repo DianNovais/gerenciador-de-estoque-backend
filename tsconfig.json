@@ -5,6 +5,7 @@
       "strict": true,
       "moduleResolution": "node",
       "esModuleInterop": true,
+      "typeRoots": ["./node_modules/@types", "./types"]
     },
     "include": ["**/*.ts"],
     "exclude": ["node_modules"]
