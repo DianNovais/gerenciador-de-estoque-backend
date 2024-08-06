@@ -10,11 +10,11 @@ export class cartController{
             return res.status(400).json({"message": "Dados em branco body"});
         }
 
-        if(!req.body.user){
+        if(!req.user){
             return res.status(400).json({"message": "falha ao verificar autenticação"});
         }
 
-        const userId = req.body.user.user_id;
+        const userId = req.user?.user_id;
         
         if(!userId){
             logger.error('userId não recebido productAdd');
@@ -80,7 +80,7 @@ export class cartController{
         }
         try {
             const newCart = await cart.save();
-            return res.status(200).json({newCart});
+            return res.status(200).json({cart: newCart.products});
         } catch (error) {
             
         }
@@ -88,8 +88,8 @@ export class cartController{
     }
 
     private static async createCart(req: Request, res: Response){
-        const userId = req.body.user.user_id;
-        const userName = req.body.user.user;
+        const userId = req.user?.user_id;
+        const userName = req.user?.user;
 
         if(!userId){
             logger.error('userId não recebido createCart');
@@ -114,5 +114,35 @@ export class cartController{
             return 
         }
         
+    }
+
+    public static async getCart(req: Request, res: Response){
+        
+        if(!req.user){
+            return res.status(400).json({"message": "usuário inválido"});
+        }
+
+        if(typeof(req.user) !== 'object' && 'user_id' in req.user){
+            return res.status(400).json({"message": "usuário inválido"});
+        }
+
+
+        const user_id = req.user?.user_id;
+
+        const cartExist = await Cart.findOne({user_id: user_id});
+
+        let cart;
+        if(!cartExist){
+            const cartCreated = await cartController.createCart(req, res);
+            cart = cartCreated;
+        }else{
+            cart = cartExist;
+        }
+
+        if(!cart){
+            return;
+        }
+
+        return res.status(200).json({cart : cart.products});
     }
 }
