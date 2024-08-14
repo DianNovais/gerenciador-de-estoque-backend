@@ -3,6 +3,7 @@ import { userMiddle } from "../middleware/userMiddle";
 import bcrypt from 'bcrypt';
 import User from "../models/UserModel";
 import createToken from "../helpers/tokenCreate";
+import { logger } from "../logs/logConfig";
 
 
 export class userController{
@@ -24,8 +25,12 @@ export class userController{
 
         try {
             await userCreated.save();
+
+            logger.info(`foi criado um novo usuário ${userCreated.user}`);
             return res.status(200).json({userCreated});
+
         } catch (error) {
+            logger.debug(`server error: ${error}`);
             return res.status(400).json({error});
         }
     }
@@ -55,6 +60,7 @@ export class userController{
 
                 const token = createToken(userExist);
 
+                logger.info(`user ${user} logado.`);
                 return res.status(200).json({token: token});
             } catch (error) {
                 console.log(error);

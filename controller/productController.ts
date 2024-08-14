@@ -59,7 +59,6 @@ export class productController implements IProductController {
       logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} DELETOU o produto ${productFindAndDelete?.name}`);
       return res.status(200).json({"message": `${productFindAndDelete?.name} deletado`});
     }catch(error){
-      console.log(error);
       logger.debug(`ocorreu um error ao DELETAR um produto ${error}`)
       return res.status(400).json({"message": "não foi possivel deletar o produto", error});
     }

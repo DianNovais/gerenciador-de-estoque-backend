@@ -9,17 +9,19 @@ import { message } from "antd";
 export class cartController{
     public static async productAdd(req: Request, res: Response){
         if(!req.body){
+            logger.error('um user está enviando o req.body vazio');
             return res.status(400).json({"message": "Dados em branco body"});
         }
 
         if(!req.user){
+            logger.error('um user está enviando o req.user vazio');
             return res.status(400).json({"message": "falha ao verificar autenticação"});
         }
 
         const userId = req.user?.user_id;
         
         if(!userId){
-            logger.error('userId não recebido productAdd');
+            logger.error('userId não recebido - productAdd');
             return res.status(401).json({"message": "usúario inválido"});
         }
         
@@ -40,6 +42,7 @@ export class cartController{
         const {products} = req.body;
         
         if(!products){
+            logger.error(`o user ${userId + " " + req.user?.user} não envia produtos no carrinho`);
             return res.status(400).json({"message": "O carrinho precisa ter produtos"});
         }
 
@@ -61,16 +64,19 @@ export class cartController{
             const typeQuantity = typeof(quantity);
 
             if( typeQuantity !== 'number' || typeProductId !== 'string'){
+                logger.error(`o user ${userId + " " + req.user?.user} está enviando produtos inválidos`);
                 return res.status(400).json({"message": "Lista de itens inválida"});
             }
 
             if(!ObjectId.isValid(product_Id)){
+                logger.error(`o user ${userId + " " + req.user?.user} está enviando produtos inválidos`);
                 return res.status(400).json({"message": "Produto inválido"});
             }
 
             const productFind = await product.findOne({_id: product_Id});
 
             if(!productFind){
+                logger.error(`o user ${userId + " " + req.user?.user} está enviando produtos inválidos`);
                 return res.status(404).json({"message": "Produto inválido"});
             }
 
@@ -84,9 +90,11 @@ export class cartController{
         }
         try {
             const newCart = await cart.save();
+            logger.info(`o user ${userId + " " + req.user?.user} ADICIONOU PRODUTOS`);
             return res.status(200).json({cart: newCart.products});
         } catch (error) {
-            
+            logger.debug(`server error: ${error}`);
+            return res.status(500).json({"message": "server error"});
         }
         
     }
@@ -94,21 +102,24 @@ export class cartController{
 
     public static async deleteProduct(req: Request, res: Response){
         if(!req.user){
+            logger.error(`sem dados do user`);
             res.status(400).json({"message": "Falha ao verificar autenticação"});
         }
         
         const userId = req.user?.user_id;
         
         if(!userId){
-            logger.error('userId não recebido - productAdd');
+            logger.error('userId não recebido');
             return res.status(401).json({"message": "usúario inválido"});
         }
 
         if(!req.body.productId){
+            logger.error(`o user ${userId + " " + req.user?.user} não envia produto para deletar`);
             return res.status(400).json({"message": "não existe produto para deletar"})
         }
 
         if(!ObjectId.isValid(req.body.productId)){
+            logger.error(`o user ${userId + " " + req.user?.user} enviou um produto com id inválido`);
             return res.status(400).json({"message": "produto inválido"});
         }
 
@@ -118,6 +129,7 @@ export class cartController{
             const cartExist = await Cart.findOne({user_id: userId});
 
             if(!cartExist){
+                logger.error(`o user ${userId + " " + req.user?.user} está tentando deletar um produto sem carrinho`);
                 return res.status(404).json({"message": "carrinho não encontrado"});
             }
 
@@ -125,6 +137,7 @@ export class cartController{
             const indexProduct = cartExist.products.findIndex(productItem => productItem.product_id?.toString() === productId.toString());
             console.log(productId, indexProduct);
             if(indexProduct === -1){
+                logger.error(`o user ${userId + " " + req.user?.user} enviou um produto inexistente em seu carrinho`);
                 return res.status(404).json({"message": "Produto não encontrado"});
             }
 
@@ -132,9 +145,11 @@ export class cartController{
 
             await cartExist.save();
 
+            logger.info(`o user ${userId + " " + req.user?.user} deletou um produto`);
             return res.status(200).json({"message": "item foi deletado com sucesso", "deleted": true});
 
         } catch (error) {
+            logger.debug(`server error: ${error}`);
             return res.status(500).json({"message": "server error"});
         }
         
@@ -162,7 +177,7 @@ export class cartController{
             return cartCreated;
 
         } catch (error) {
-            logger.error(`ocorreu um error o carrinho do ${userId + " " + userName} criar um carrinho ${error}`)
+            logger.debug(`ocorreu um error o carrinho do ${userId + " " + userName} criar um carrinho ${error}`)
             res.status(500).json({"message": "error no servidor"});
             return 
         }
@@ -172,10 +187,12 @@ export class cartController{
     public static async getCart(req: Request, res: Response){
         
         if(!req.user){
+            logger.error(`não foi fornecido as informações do user`);
             return res.status(400).json({"message": "usuário inválido"});
         }
 
         if(typeof(req.user) !== 'object' && 'user_id' in req.user){
+            logger.error(`o cliente está tentando acessar o sistema com um user inválido`);
             return res.status(400).json({"message": "usuário inválido"});
         }
 
@@ -195,7 +212,7 @@ export class cartController{
         if(!cart){
             return;
         }
-
+        logger.info(`o user ${req.user?.user_id + " " + req.user?.user} requisitou todos produtos do carrinho`);
         return res.status(200).json({cart : cart.products});
     }
 }
