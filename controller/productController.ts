@@ -20,7 +20,7 @@ export class productController implements IProductController {
     );
 
     if (isValid !== true) {
-      logger.error(`o usúario ${req.body.user.user_id + " " + req.body.user.user} está tentando CRIAR um produto sem fornecer dados`)
+      logger.error(`o usúario ${req.user?.user_id + " " + req.user?.user} está tentando CRIAR um produto sem fornecer dados`)
       return res.status(400).json({ error: isValid });
     }
 
@@ -37,7 +37,7 @@ export class productController implements IProductController {
         return res.status(400).json({error});
     }
     
-    logger.info(`o usúario ${req.body.user.user_id + " " + req.body.user.user} CRIOU o produto ${newProduct?.name}`);
+    logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} CRIOU o produto ${newProduct?.name}`);
     return res.status(200).json({newProduct});
   }
 
@@ -45,18 +45,18 @@ export class productController implements IProductController {
     const {_id} = req.body;
 
     if(!_id){
-      logger.error(`o usúario ${req.body.user.user_id + " " + req.body.user.user} está tentando DELETAR um produto sem fornecer um _id`)
+      logger.error(`o usúario ${req.user?.user_id + " " + req.user?.user} está tentando DELETAR um produto sem fornecer um _id`)
       return res.status(404).json({"error": "Não deixe campos em branco"})
     }
 
     try{
       const productFindAndDelete = await product.findOneAndDelete({_id: _id});
       if(!productFindAndDelete){
-        logger.error(`o usúario ${req.body.user.user_id + " " + req.body.user.user} tentou DELETAR um produto inexistente`)
+        logger.error(`o usúario ${req.user?.user_id + " " + req.user?.user} tentou DELETAR um produto inexistente`)
         return res.status(404).json({"message": "Produto não encontrado"});
       }
 
-      logger.info(`o usúario ${req.body.user.user_id + " " + req.body.user.user} DELETOU o produto ${productFindAndDelete?.name}`);
+      logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} DELETOU o produto ${productFindAndDelete?.name}`);
       return res.status(200).json({"message": `${productFindAndDelete?.name} deletado`});
     }catch(error){
       console.log(error);
