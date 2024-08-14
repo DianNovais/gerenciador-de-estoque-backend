@@ -4,6 +4,7 @@ import { logger } from "../logs/logConfig";
 import mongoose, { mongo, Schema } from "mongoose";
 import product from "../models/ProductModel";
 import { ObjectId } from "mongodb";
+import { message } from "antd";
 
 export class cartController{
     public static async productAdd(req: Request, res: Response){
@@ -86,6 +87,55 @@ export class cartController{
             return res.status(200).json({cart: newCart.products});
         } catch (error) {
             
+        }
+        
+    }
+
+
+    public static async deleteProduct(req: Request, res: Response){
+        if(!req.user){
+            res.status(400).json({"message": "Falha ao verificar autenticação"});
+        }
+        
+        const userId = req.user?.user_id;
+        
+        if(!userId){
+            logger.error('userId não recebido - productAdd');
+            return res.status(401).json({"message": "usúario inválido"});
+        }
+
+        if(!req.body.productId){
+            return res.status(400).json({"message": "não existe produto para deletar"})
+        }
+
+        if(!ObjectId.isValid(req.body.productId)){
+            return res.status(400).json({"message": "produto inválido"});
+        }
+
+        const productId = new mongoose.Types.ObjectId(`${req.body.productId}`);
+
+        try {
+            const cartExist = await Cart.findOne({user_id: userId});
+
+            if(!cartExist){
+                return res.status(404).json({"message": "carrinho não encontrado"});
+            }
+
+            // find index product
+            const indexProduct = cartExist.products.findIndex(productItem => productItem.product_id?.toString() === productId.toString());
+            console.log(productId, indexProduct);
+            if(indexProduct === -1){
+                return res.status(404).json({"message": "Produto não encontrado"});
+            }
+
+            cartExist.products.splice(indexProduct, 1);
+
+            await cartExist.save();
+
+            return res.status(200).json({"message": "item foi deletado com sucesso", "deleted": true});
+
+        } catch (error) {
+            return res.status(500).json({"message": "server error"});
         }
         
     }

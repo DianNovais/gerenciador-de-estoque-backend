@@ -13,6 +13,7 @@ export class cartRoutes{
 
     private routes(){
         this.router.post('/addproducts', cartController.productAdd);
+        this.router.post('/delete', cartController.deleteProduct);
         this.router.get('/getproducts', cartController.getCart);
     }
 }
