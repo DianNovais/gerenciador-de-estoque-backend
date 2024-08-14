@@ -14,3 +14,6 @@
 {"level":"error","message":"ocorreu um error o carrinho do 66a7905adc37cf56895744a4 dianNovais criar um carrinho MongoServerError: E11000 duplicate key error collection: test.carts index: user_id_1 dup key: { user_id: ObjectId('66a7905adc37cf56895744a4') }","service":"user-service","timestamp":"2024-08-05 15:12:34"}
 {"level":"error","message":"ocorreu um error o carrinho do 66a7905adc37cf56895744a4 dianNovais criar um carrinho MongoServerError: E11000 duplicate key error collection: test.carts index: user_id_1 dup key: { user_id: ObjectId('66a7905adc37cf56895744a4') }","service":"user-service","timestamp":"2024-08-05 15:15:20"}
 {"level":"info","message":"carrinho do 66a7905adc37cf56895744a4 dianNovais criado com sucesso","service":"user-service","timestamp":"2024-08-06 14:08:10"}
+{"level":"debug","message":"ocorreu um error ao fazer a REQUIÇÃO de produtos TypeError: Cannot read properties of undefined (reading 'user_id')","service":"user-service","timestamp":"2024-08-14 10:38:28"}
+{"level":"debug","message":"ocorreu um error ao fazer a REQUIÇÃO de produtos TypeError: Cannot read properties of undefined (reading 'user_id')","service":"user-service","timestamp":"2024-08-14 10:38:37"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-14 10:43:37"}

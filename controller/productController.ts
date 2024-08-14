@@ -69,7 +69,7 @@ export class productController implements IProductController {
   public static async allProducts(req: Request, res: Response){
     try {
       const products = await product.find();
-      logger.info(`o usúario ${req.body.user.user_id + " " + req.body.user.user} REQUISITOU todos produtos`);
+      logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} REQUISITOU todos produtos`);
       return res.status(200).json({products});
 
     } catch (error) {
