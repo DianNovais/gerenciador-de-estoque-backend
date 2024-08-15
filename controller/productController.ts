@@ -76,5 +76,50 @@ export class productController implements IProductController {
       return res.status(500).json({"message": "server error"});
     }
   }
+
+
+  public static async modifyProduct(req: Request, res: Response){
+    if(!req.body || !req.body.product){
+      return res.status(400).json({"message": "precisa enviar um produto"});
+    }
+
+    const productId = req.body.product._id;
+    const productName = `${req.body.product.name}`;
+    const productQuantity = req.body.product.qtd;
+    const productValue = req.body.product.value;
+
+    if(typeof(productQuantity) !== "number" || typeof(productValue) !== "number"){
+      return res.status(400).json({"message": "a quantidade ou valor do produto precisar ser um número"});
+    }
+
+    if(!productId){
+      return res.status(400).json({"message": "precisa enviar um Id produto"});
+    }
+
+    const isValid: boolean | string = productMiddle.productVerify(productName, productQuantity, productValue);
+
+    if(!isValid){
+      return res.status(400).json({"message": isValid});
+    }
+
+    try {
+      const productExist = await product.findOne({_id: productId}, {new: true});
+
+      if(!productExist){
+        return res.status(404).json({"message": "não foi encontrado o produto"});
+      }
+
+      productExist.name = productName;
+      productExist.quantity = productQuantity;
+      productExist.value = productValue;
+
+      productExist.save();
+
+      return res.status(200).json({productExist});
+      
+    } catch (error) {
+      return res.status(500).json({"message": "server error"});
+    }
+  }
   
 }

@@ -12,6 +12,7 @@ export class productRoutes{
     public routes(){
         this.router.post('/create', (req, res) => productController.productCreate(req, res));
         this.router.post('/delete', (req, res) => productController.productDelete(req, res));
+        this.router.post('/modify', (req, res) => productController.modifyProduct(req, res));
         this.router.get('/allproducts', (req, res) => productController.allProducts(req, res));
     }
 }

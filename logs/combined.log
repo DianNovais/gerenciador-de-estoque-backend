@@ -17,3 +17,12 @@
 {"level":"error","message":"ocorreu um error o carrinho do 66a7905adc37cf56895744a4 dianNovais criar um carrinho MongoServerError: E11000 duplicate key error collection: test.carts index: user_id_1 dup key: { user_id: ObjectId('66a7905adc37cf56895744a4') }","service":"user-service","timestamp":"2024-08-05 15:15:20"}
 {"level":"info","message":"carrinho do 66a7905adc37cf56895744a4 dianNovais criado com sucesso","service":"user-service","timestamp":"2024-08-06 14:08:10"}
 {"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-14 10:43:37"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais CRIOU o produto bandeja 30x20x4","service":"user-service","timestamp":"2024-08-14 11:57:38"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais CRIOU o produto bandeja 30x20x4","service":"user-service","timestamp":"2024-08-15 08:21:53"}
+{"level":"info","message":"o user 66a7905adc37cf56895744a4 dianNovais requisitou todos produtos do carrinho","service":"user-service","timestamp":"2024-08-15 09:26:29"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:27:26"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:32:58"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:38:00"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:39:06"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:40:19"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-15 09:40:33"}
