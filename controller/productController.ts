@@ -80,6 +80,7 @@ export class productController implements IProductController {
 
   public static async modifyProduct(req: Request, res: Response){
     if(!req.body || !req.body.product){
+      logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} não está enviando o produto para modificar`);
       return res.status(400).json({"message": "precisa enviar um produto"});
     }
 
@@ -89,16 +90,20 @@ export class productController implements IProductController {
     const productValue = req.body.product.value;
 
     if(typeof(productQuantity) !== "number" || typeof(productValue) !== "number"){
+      logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} está enviando tipos diferentes`);
       return res.status(400).json({"message": "a quantidade ou valor do produto precisar ser um número"});
     }
 
     if(!productId){
+      logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} não está enviando o produtoId`)
       return res.status(400).json({"message": "precisa enviar um Id produto"});
     }
 
     const isValid: boolean | string = productMiddle.productVerify(productName, productQuantity, productValue);
 
-    if(!isValid){
+    console.log(isValid);
+    if(isValid !== true){
+      logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} não está enviando informações corretas para modificar`)
       return res.status(400).json({"message": isValid});
     }
 
@@ -106,6 +111,7 @@ export class productController implements IProductController {
       const productExist = await product.findOne({_id: productId}, {new: true});
 
       if(!productExist){
+        logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} está tentando modificar um produto inexistente`)
         return res.status(404).json({"message": "não foi encontrado o produto"});
       }
 
@@ -115,9 +121,11 @@ export class productController implements IProductController {
 
       productExist.save();
 
+      logger.info(`o usuário ${req.user?.user_id + " " + req.user?.user} modificou um produto`)
       return res.status(200).json({productExist});
       
     } catch (error) {
+      logger.debug(`server error: ${error}`);
       return res.status(500).json({"message": "server error"});
     }
   }

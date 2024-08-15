@@ -16,7 +16,7 @@ export class productMiddle implements IProductMiddle {
             return 'O produto precisa ter nome com mais de 3 caracter.';
         }
 
-        if(qtd < 0 && value < 0){
+        if(qtd < 0 || value < 0){
             return 'inválido, coloque um numéro igual ou superior a 0';
         }
 
