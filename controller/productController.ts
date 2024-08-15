@@ -101,7 +101,6 @@ export class productController implements IProductController {
 
     const isValid: boolean | string = productMiddle.productVerify(productName, productQuantity, productValue);
 
-    console.log(isValid);
     if(isValid !== true){
       logger.error(`o usuário ${req.user?.user_id + " " + req.user?.user} não está enviando informações corretas para modificar`)
       return res.status(400).json({"message": isValid});

@@ -212,7 +212,25 @@ export class cartController{
         if(!cart){
             return;
         }
+
+        let listProducts = [];
+        for(let count = 0; count < cart.products.length; count++){
+            try {
+                const producFind = await product.findOne({_id: cart.products[count].product_id}).select('value');
+                const newProduct = {
+                    product_id: cart.products[count].product_id,
+                    quantity: cart.products[count].quantity,
+                    value: producFind?.value
+                };
+
+                listProducts.push(newProduct);
+            } catch (error) {
+                logger.debug(`server error: ${error}`);
+            }
+        }
+
+        
         logger.info(`o user ${req.user?.user_id + " " + req.user?.user} requisitou todos produtos do carrinho`);
-        return res.status(200).json({cart : cart.products});
+        return res.status(200).json({cart : listProducts});
     }
 }
