@@ -86,12 +86,14 @@ export class cartController{
 
             const productQtd = parseInt(quantity);
             const productId = new mongoose.Types.ObjectId(`${product_Id}`);
-            cart.products.push({product_id: productId, quantity: productQtd});
+            cart.products.push({product_id: productId, quantity: productQtd, name: productFind.name});
         }
         try {
             const newCart = await cart.save();
+
             logger.info(`o user ${userId + " " + req.user?.user} ADICIONOU PRODUTOS`);
             return res.status(200).json({cart: newCart.products});
+
         } catch (error) {
             logger.debug(`server error: ${error}`);
             return res.status(500).json({"message": "server error"});
@@ -216,11 +218,12 @@ export class cartController{
         let listProducts = [];
         for(let count = 0; count < cart.products.length; count++){
             try {
-                const producFind = await product.findOne({_id: cart.products[count].product_id}).select('value');
+                const productFind = await product.findOne({_id: cart.products[count].product_id}).select('value name');
                 const newProduct = {
                     product_id: cart.products[count].product_id,
                     quantity: cart.products[count].quantity,
-                    value: producFind?.value
+                    value: productFind?.value,
+                    name: productFind?.name
                 };
 
                 listProducts.push(newProduct);
