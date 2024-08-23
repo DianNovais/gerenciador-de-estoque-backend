@@ -54,6 +54,7 @@ export class cartController{
             return res.status(400).json({"message": "Seu carrinho está cheio"});
         }
 
+
         cart.products.splice(0, cart.products.length);
 
         for(let x = 0; x < products.length ; x++){
@@ -62,6 +63,10 @@ export class cartController{
 
             const typeProductId = typeof(product_Id);
             const typeQuantity = typeof(quantity);
+
+            if(quantity < 1){
+                return res.status(400).json({"message": "Coloque um valor positivo acima de 0"});
+            }
 
             if( typeQuantity !== 'number' || typeProductId !== 'string'){
                 logger.error(`o user ${userId + " " + req.user?.user} está enviando produtos inválidos`);
@@ -215,17 +220,33 @@ export class cartController{
             return;
         }
 
+        const mapCartIds = cart.products.map((p => p.product_id));
+
+        const allProductsCart = await product.find({_id: { $in: mapCartIds}}).select('value name');
+
+        const mapProducts = new Map(allProductsCart.map(p => [p._id.toString(), p]));
+
         let listProducts = [];
-        for(let count = 0; count < cart.products.length; count++){
+        for(let product of mapProducts){
             try {
-                const productFind = await product.findOne({_id: cart.products[count].product_id}).select('value name');
+                // search quantity product in the user cart
+                const productCart = cart.products.filter(item => {
+                    //compare id cart and id mapProducts
+                    if(item.product_id?.toString() === product[0]){
+                        return item;
+                    };
+                    
+                });
+
+
                 const newProduct = {
-                    product_id: cart.products[count].product_id,
-                    quantity: cart.products[count].quantity,
-                    value: productFind?.value,
-                    name: productFind?.name
+                    product_id: product[1]._id,
+                    quantityCartUser: productCart[0].quantity,
+                    value: product[1].value,
+                    name: product[1].name
                 };
 
+                //match product to Cart and Orinal Product
                 listProducts.push(newProduct);
             } catch (error) {
                 logger.debug(`server error: ${error}`);

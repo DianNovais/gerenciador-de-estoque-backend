@@ -6,6 +6,7 @@ import { userRoutes } from "../routes/userRoutes";
 import { tokenVerify } from "../helpers/tokenVerify";
 import { rateLimit } from 'express-rate-limit'
 import { cartRoutes } from "../routes/cartRoutes";
+import { sellRoutes } from "../routes/sellRoutes";
 
 const limiter = rateLimit({
 	windowMs: 1 * 60 * 1000,
@@ -54,6 +55,7 @@ export class App {
         this.server.use('/product/', tokenVerify, new productRoutes().router);
         this.server.use('/user/', new userRoutes().router);
         this.server.use('/cart/', tokenVerify, new cartRoutes().router);
+        this.server.use('/sell/', tokenVerify, new sellRoutes().router);
 
         this.server.get('/', (req: Request, res: Response) => {
             console.log('a porta está ativa')
