@@ -11,6 +11,6 @@ export class sellRoutes{
 
     private routes(){
         this.router.post('/create', (req, res) => sellController.sellCreate(req, res));
-        this.router.get('/sales', (req, res) => sellController.getSell(req, res));
+        this.router.get('/get', (req, res) => sellController.getSell(req, res));
     }
 }
