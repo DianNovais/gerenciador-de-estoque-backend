@@ -63,3 +63,4 @@
 {"level":"info","message":"o user 66a7905adc37cf56895744a4 dianNovais ADICIONOU PRODUTOS","service":"user-service","timestamp":"2024-08-23 14:32:33"}
 {"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-23 14:33:01"}
 {"level":"info","message":"foi criado um novo usuário dianNovais2","service":"user-service","timestamp":"2024-08-23 14:48:54"}
+{"level":"info","message":"user dianNovais logado.","service":"user-service","timestamp":"2024-08-26 14:14:35"}

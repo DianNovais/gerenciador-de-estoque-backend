@@ -109,7 +109,8 @@ export class sellController{
 
             return res.status(200).json(sell);
         }catch(error){
-
+            logger.error(`server error: ${error}`)
+            return res.status(500).json({"message": "server error"})
         }
 
         
