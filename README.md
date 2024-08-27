@@ -65,7 +65,7 @@ npm install
 npm start
 ```
 
-## 📒 Como usar - Dcoumentação
+## 📒 Como usar - Documentação
 [Documentação API](https://documenter.getpostman.com/view/23404987/2sAXjGcDuK)
 
 ## 🌟 possíveis atualizações
