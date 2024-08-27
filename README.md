@@ -66,6 +66,12 @@ npm start
 ```
 
 ## 📒 Como usar - Documentação
+Antes de qualquer teste não se esqueça de alterar o arquivo .env.example para .env após isso preencha com seus dados.
+`
+MONGO_URI=coloque sua uri do mongo
+SECRET_KEY=coloque uma chave secreta de preferência criptografada
+`
+
 [Documentação API](https://documenter.getpostman.com/view/23404987/2sAXjGcDuK)
 
 ## 🌟 possíveis atualizações
