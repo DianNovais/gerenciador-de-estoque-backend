@@ -1,2 +1,5 @@
 {"level":"error","message":"o usúario 66a7905adc37cf56895744a4 dianNovais está tentando apagar um produto sem fornecer um _id","service":"user-service","timestamp":"2024-07-30 11:22:43"}
 {"level":"error","message":"o usúario 66a7905adc37cf56895744a4 dianNovais está tentando DELETAR um produto sem fornecer um _id","service":"user-service","timestamp":"2024-07-30 13:45:46"}
+{"level":"error","message":"o usúario 66a7905adc37cf56895744a4 dianNovais tentou DELETAR um produto inexistente","service":"user-service","timestamp":"2024-08-26 14:49:48"}
+{"level":"error","message":"o user 66a7905adc37cf56895744a4 dianNovais está enviando produtos inválidos","service":"user-service","timestamp":"2024-08-26 14:51:33"}
+{"level":"error","message":"o user 66c8cb85d935e69948ad1c57 dianNovais2 está enviando produtos inválidos","service":"user-service","timestamp":"2024-08-26 15:59:58"}

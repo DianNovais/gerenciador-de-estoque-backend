@@ -66,3 +66,27 @@
 {"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-23 14:33:01"}
 {"level":"info","message":"foi criado um novo usuário dianNovais2","service":"user-service","timestamp":"2024-08-23 14:48:54"}
 {"level":"info","message":"user dianNovais logado.","service":"user-service","timestamp":"2024-08-26 14:14:35"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 14:46:10"}
+{"level":"info","message":"o user 66a7905adc37cf56895744a4 dianNovais ADICIONOU PRODUTOS","service":"user-service","timestamp":"2024-08-26 14:47:51"}
+{"level":"info","message":"o user 66a7905adc37cf56895744a4 dianNovais requisitou todos produtos do carrinho","service":"user-service","timestamp":"2024-08-26 14:48:00"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 14:49:20"}
+{"level":"info","message":"o usuário 66a7905adc37cf56895744a4 dianNovais modificou um produto","service":"user-service","timestamp":"2024-08-26 14:49:37"}
+{"level":"error","message":"o usúario 66a7905adc37cf56895744a4 dianNovais tentou DELETAR um produto inexistente","service":"user-service","timestamp":"2024-08-26 14:49:48"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais DELETOU o produto bandeja 20x20x4","service":"user-service","timestamp":"2024-08-26 14:50:06"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 14:50:21"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais DELETOU o produto bandeja 28x20x4","service":"user-service","timestamp":"2024-08-26 14:50:36"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 14:50:39"}
+{"level":"info","message":"o user 66a7905adc37cf56895744a4 dianNovais requisitou todos produtos do carrinho","service":"user-service","timestamp":"2024-08-26 14:51:27"}
+{"level":"error","message":"o user 66a7905adc37cf56895744a4 dianNovais está enviando produtos inválidos","service":"user-service","timestamp":"2024-08-26 14:51:33"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais CRIOU o produto tomate","service":"user-service","timestamp":"2024-08-26 14:52:11"}
+{"level":"info","message":"o usúario 66a7905adc37cf56895744a4 dianNovais REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 14:52:23"}
+{"level":"info","message":"user dianNovais2 logado.","service":"user-service","timestamp":"2024-08-26 15:58:17"}
+{"level":"info","message":"user dianNovais2 logado.","service":"user-service","timestamp":"2024-08-26 15:58:26"}
+{"level":"info","message":"o usúario 66c8cb85d935e69948ad1c57 dianNovais2 REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 15:59:40"}
+{"level":"info","message":"carrinho do 66c8cb85d935e69948ad1c57 dianNovais2 criado com sucesso","service":"user-service","timestamp":"2024-08-26 15:59:53"}
+{"level":"info","message":"o user 66c8cb85d935e69948ad1c57 dianNovais2 requisitou todos produtos do carrinho","service":"user-service","timestamp":"2024-08-26 15:59:53"}
+{"level":"error","message":"o user 66c8cb85d935e69948ad1c57 dianNovais2 está enviando produtos inválidos","service":"user-service","timestamp":"2024-08-26 15:59:58"}
+{"level":"info","message":"o user 66c8cb85d935e69948ad1c57 dianNovais2 ADICIONOU PRODUTOS","service":"user-service","timestamp":"2024-08-26 16:00:21"}
+{"level":"info","message":"o user 66c8cb85d935e69948ad1c57 dianNovais2 requisitou todos produtos do carrinho","service":"user-service","timestamp":"2024-08-26 16:00:35"}
+{"level":"info","message":"o usúario 66c8cb85d935e69948ad1c57 dianNovais2 REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 16:00:39"}
+{"level":"info","message":"o usúario 66c8cb85d935e69948ad1c57 dianNovais2 REQUISITOU todos produtos","service":"user-service","timestamp":"2024-08-26 16:00:51"}
