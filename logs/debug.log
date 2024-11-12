@@ -120,3 +120,9 @@
 {"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-06 14:56:32"}
 {"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-06 14:56:59"}
 {"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-06 14:57:12"}
+{"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-12 11:06:23"}
+{"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-12 11:16:26"}
+{"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-12 11:24:05"}
+{"level":"info","message":"user dico logado.","service":"user-service","timestamp":"2024-11-12 11:33:27"}
+{"level":"info","message":"foi criado um novo usuário dico1","service":"user-service","timestamp":"2024-11-12 11:33:51"}
+{"level":"info","message":"user dico1 logado.","service":"user-service","timestamp":"2024-11-12 11:33:51"}
