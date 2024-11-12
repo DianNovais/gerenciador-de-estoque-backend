@@ -27,7 +27,12 @@ export class userController{
             await userCreated.save();
 
             logger.info(`foi criado um novo usuário ${userCreated.user}`);
-            return res.status(200).json({userCreated});
+
+            const token = createToken(userCreated);
+
+            logger.info(`user ${user} logado.`);
+            
+            return res.status(200).json({token: token});
 
         } catch (error) {
             logger.debug(`server error: ${error}`);
