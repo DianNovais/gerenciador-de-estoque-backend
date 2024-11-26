@@ -57,9 +57,24 @@ export class cartController{
 
         cart.products.splice(0, cart.products.length);
 
+        // usando reduce para evitar duplicatas vindas da requisição
+        const consolidatedProducts = products.reduce((acc: any[], product: any) => {
+            const productExist = acc.find((item) => item.product_id === product.product_id);
+
+            if(productExist){
+                productExist.quantity += product.quantity;
+            }else{
+                acc.push({product_id: product.product_id, quantity: product.quantity});
+            }
+
+            return acc;
+        }, []);
+
         for(let x = 0; x < products.length ; x++){
-            const product_Id = products[x].product_id;
-            const quantity = products[x].quantity;
+
+
+            const product_Id = consolidatedProducts[x].product_id;
+            let quantity: number = consolidatedProducts[x].quantity;
 
             const typeProductId = typeof(product_Id);
             const typeQuantity = typeof(quantity);
@@ -78,6 +93,8 @@ export class cartController{
                 return res.status(400).json({"message": "Produto inválido"});
             }
 
+            
+
             const productFind = await product.findOne({_id: product_Id});
 
             if(!productFind){
@@ -88,10 +105,10 @@ export class cartController{
             if(productFind.quantity < quantity){
                 return res.status(400).json({"message": "Quantidade não disponivel do produto, verifique a quantidade em estoque do mesmo"});
             }
-
-            const productQtd = parseInt(quantity);
+            
+            
             const productId = new mongoose.Types.ObjectId(`${product_Id}`);
-            cart.products.push({product_id: productId, quantity: productQtd, name: productFind.name});
+            cart.products.push({product_id: productId, quantity, name: productFind.name});
         }
         try {
             const newCart = await cart.save();
@@ -238,10 +255,10 @@ export class cartController{
                     
                 });
 
-
+                // new product added with the quantity user
                 const newProduct = {
                     product_id: product[1]._id,
-                    quantityCartUser: productCart[0].quantity,
+                    quantity: productCart[0].quantity,
                     value: product[1].value,
                     name: product[1].name
                 };

@@ -32,13 +32,16 @@ export class productController implements IProductController {
 
     try{
         await newProduct.save();
+        
+        logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} CRIOU o produto ${newProduct?.name}`);
+        return res.status(200).json({newProduct});
     }catch(error){
+      console.log('error');
       logger.debug(`ocorreu um error ao CRIAR um produto ${error}`)
         return res.status(400).json({error});
     }
     
-    logger.info(`o usúario ${req.user?.user_id + " " + req.user?.user} CRIOU o produto ${newProduct?.name}`);
-    return res.status(200).json({newProduct});
+    
   }
 
   public static async productDelete(req: Request, res: Response){
