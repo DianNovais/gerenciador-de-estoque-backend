@@ -10,7 +10,7 @@ const sellSchema = new Schema({
         value: {type: Number, require: true, default: 0}
     }],
     amount: {type: Number, require: true}
-})
+}, {timestamps: true});
 
 const Sell = model('sell', sellSchema);
 
