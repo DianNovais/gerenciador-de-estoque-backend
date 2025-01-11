@@ -30,7 +30,7 @@ export class App {
     private corsConfig(){
         this.server.use(cors({
             origin: (origin, callback) => {
-                if(origin !== 'http://localhost:5173'){
+                if(origin !== 'http://localhost:5174'){
                     callback(new Error('Error de Cors'))
                 }else(
                     callback(null, true)
